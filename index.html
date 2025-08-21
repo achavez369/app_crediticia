@@ -94,6 +94,16 @@
 
       .center{ text-align:center }
 
+      /* Mejoras de responsividad para móvil */
+    .kv dt,.kv dd{overflow-wrap:anywhere;word-break:break-word}
+    @media (max-width: 520px){
+      .kv{grid-template-columns:1fr}
+      .kv dd{text-align:left;font-weight:700}
+      .kv dt{margin-top:8px}
+      .inlineRow{grid-template-columns:1fr}
+      .actions{flex-direction:column}
+    }
+
   </style>
 </head>
 <body>
