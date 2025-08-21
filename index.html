@@ -81,6 +81,9 @@
     .kv dd{margin:0;text-align:right;font-weight:700}
     .sectionTitle{font-weight:700;margin:4px 0 10px}
 
+    /* Espaciado entre cards en Resumen y Resultado */
+    #step-4 .card + .card, #step-5 .card + .card{margin-top:12px}
+
       /* Modal (popup) */
     .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(17,24,39,.45);z-index:1000;padding:16px}
     .modal.show{display:flex}
@@ -100,9 +103,12 @@
       .kv{grid-template-columns:1fr}
       .kv dd{text-align:left;font-weight:700}
       .kv dt{margin-top:8px}
-      .inlineRow{grid-template-columns:1fr}
+      .inlineRow{grid-template-columns:minmax(110px,auto) 1fr; gap:8px}
+      .segmented{padding:4px}
+      .segmented .seg{padding:6px 10px}
       .actions{flex-direction:column}
     }
+
 
   </style>
 </head>
@@ -165,8 +171,8 @@
           <div></div>
         </div>
         <div class="actions">
-          <button type="button" class="btn btn-secondary" disabled>← Atrás</button>
           <button type="submit" class="btn btn-primary">Siguiente →</button>
+          <button type="button" class="btn btn-secondary" disabled>← Atrás</button>
         </div>
       </form>
     </section>
@@ -205,8 +211,8 @@
           </div>
         </div>
         <div class="actions">
-          <button type="button" class="btn btn-secondary" data-back>← Atrás</button>
           <button type="submit" class="btn btn-primary">Siguiente →</button>
+          <button type="button" class="btn btn-secondary" data-back>← Atrás</button>
         </div>
       </form>
     </section>
@@ -294,8 +300,8 @@
           </div>
         </div>
         <div class="actions">
-          <button type="button" class="btn btn-secondary" data-back>← Atrás</button>
           <button type="submit" class="btn btn-primary">Evaluar →</button>
+          <button type="button" class="btn btn-secondary" data-back>← Atrás</button>
         </div>
       </form>
     </section>
@@ -308,8 +314,8 @@
       <div class="card" id="sum-spouse" style="display:none"></div>
       <div class="card" id="sum-vehicle"></div>
       <div class="actions">
-        <button type="button" class="btn btn-secondary" data-back>← Atrás</button>
         <button type="button" class="btn btn-primary" id="confirmSend">Enviar →</button>
+        <button type="button" class="btn btn-secondary" data-back>← Atrás</button>
       </div>
     </section>
     <section id="step-5" class="card hidden" aria-labelledby="t5">
@@ -437,7 +443,7 @@
           <dl class="kv">
             <dt>Documento:</dt><dd>${docMap[$('#spDocType').value]||'—'} ${$('#spDocNumber').value||''}</dd>
             <dt>Rubro laboral:</dt><dd>${$('#spLabor').selectedOptions[0]?.text||'—'}</dd>
-            <dt>Ingreso neto:<\/dt><dd>S/ \${fmt(+($('#spIncome').value||0))}</dd>
+            <dt>Ingreso neto:</dt><dd>S/ ${fmt(+($('#spIncome').value||0))}</dd>
           </dl>`;
       }
       // Vehículo y financiamiento
@@ -456,7 +462,7 @@
           <dt>Moneda:</dt><dd>${cur}</dd>
           <dt>Precio del vehículo:</dt><dd>${curSym} ${fmt(+($('#price').value||0))}</dd>
           <dt>Cuota inicial:</dt><dd>${curSym} ${fmt(+($('#down').value||0))}</dd>
-          <dt>Plazo:<\/dt><dd>${$('#term').value||'—'}</dd>
+          <dt>Plazo:</dt><dd>${$('#term').value||'—'}</dd>
           <dt>Seguro del banco:</dt><dd>${yesNo[$('#insurance').value]||'—'}</dd>
         </dl>`;
     }
